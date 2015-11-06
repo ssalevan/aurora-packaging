@@ -12,6 +12,8 @@
 #
 FROM centos:6
 
+RUN yum install -y centos-release-SCL
+
 RUN yum install -y \
     make \
     rpm-build \
@@ -25,8 +27,8 @@ RUN yum install -y \
     krb5-devel \
     libcurl-devel \
     patch \
-    python \
-    python-devel \
+    python27 \
+    python27-devel \
     subversion-devel \
     tar \
     unzip \
