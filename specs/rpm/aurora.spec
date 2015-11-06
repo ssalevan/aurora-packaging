@@ -91,6 +91,7 @@ BuildRequires: subversion-devel
 BuildRequires: tar
 BuildRequires: unzip
 BuildRequires: wget
+BuildRequires: which
 BuildRequires: zlib-devel
 
 %if 0%{?rhel} && 0%{?rhel} < 7
