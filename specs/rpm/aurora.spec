@@ -180,16 +180,16 @@ unzip gradle-%{GRADLE_VERSION}-bin.zip
 export PANTS_CONFIG_OVERRIDE=/pants.ini
 
 # Builds Aurora client PEX binaries.
-./pants binary src/main/python/apache/aurora/kerberos:kaurora
+./pants binary src/main/python/apache/aurora/client/cli:kaurora
 mv dist/kaurora.pex dist/aurora.pex
-./pants binary src/main/python/apache/aurora/kerberos:kaurora_admin
+./pants binary src/main/python/apache/aurora/admin:kaurora_admin
 mv dist/kaurora_admin.pex dist/aurora_admin.pex
 
 # Builds Aurora Thermos and GC executor PEX binaries.
-./pants binary src/main/python/apache/aurora/executor:thermos_executor
+./pants binary src/main/python/apache/aurora/executor/bin:thermos_executor
 ./pants binary src/main/python/apache/aurora/tools:thermos
 ./pants binary src/main/python/apache/aurora/tools:thermos_observer
-./pants binary src/main/python/apache/thermos/runner:thermos_runner
+./pants binary src/main/python/apache/thermos/bin:thermos_runner
 
 # Packages the Thermos runner within the Thermos executor.
 build-support/embed_runner_in_executor.py
