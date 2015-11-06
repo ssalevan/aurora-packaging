@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+- wget http://mirror.metrocast.net/apache/aurora/0.9.0/apache-aurora-0.9.0.tar.gz
+
+script:
+- sudo ./build-artifact.sh builder/rpm/centos-7 ./apache-aurora-0.9.0.tar.gz 0.9.0
