@@ -7,7 +7,7 @@ before_install:
   - wget http://mirror.metrocast.net/apache/aurora/0.9.0/apache-aurora-0.9.0.tar.gz
 
 script:
-  - ./build-artifact.sh builder/rpm/centos-6 ./apache-aurora-0.9.0.tar.gz 0.9.0
+  - ./build-artifact.sh builder/rpm/centos-7 ./apache-aurora-0.9.0.tar.gz 0.9.0
 
 addons:
   artifacts: true
