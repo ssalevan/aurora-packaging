@@ -14,5 +14,6 @@ script:
 addons:
   artifacts:
     paths:
-      - dist
+      - dist/builder/rpm/centos-6/rpmbuild/RPMS
+      - dist/builder/rpm/centos-7/rpmbuild/RPMS
   s3_region: "us-east-1"
