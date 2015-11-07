@@ -12,5 +12,7 @@ script:
   - ./build-artifact.sh builder/rpm/centos-7 ./apache-aurora-0.9.0.tar.gz 0.9.0
 
 addons:
-  artifacts: true
+  artifacts:
+    paths:
+      - dist
   s3_region: "us-east-1"
