@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - gem install package_cloud
+  - wget http://mirror.metrocast.net/apache/aurora/0.9.0/apache-aurora-0.9.0.tar.gz
+
+script:
+  #- ./build-artifact.sh builder/deb/ubuntu-trusty ./apache-aurora-0.9.0.tar.gz 0.9.0
+  #- ./build-artifact.sh builder/rpm/centos-6 ./apache-aurora-0.9.0.tar.gz 0.9.0
+  - ./build-artifact.sh builder/rpm/fedora-23 ./apache-aurora-0.9.0.tar.gz 0.9.0
+  #- bash -c 'package_cloud push ssalevan/aurora/el/6 dist/builder/rpm/centos-6/rpmbuild/RPMS/x86_64/*.rpm'
+  - bash -c 'package_cloud push ssalevan/aurora/fedora/23 dist/builder/rpm/fedora-23/rpmbuild/RPMS/x86_64/*.rpm'
