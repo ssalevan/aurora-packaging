@@ -27,6 +27,7 @@ run_build() {
   BUILDER_DIR=$1
   RELEASE_TAR=$2
   AURORA_VERSION=$3
+  MESOS_VERSION=$4
 
   IMAGE_NAME="aurora-$(basename $BUILDER_DIR)"
   echo "Using docker image $IMAGE_NAME"
@@ -34,6 +35,7 @@ run_build() {
 
   docker run \
     -e AURORA_VERSION=$AURORA_VERSION \
+    -e MESOS_VERSION=$MESOS_VERSION \
     -v "$(pwd)/specs:/specs:ro" \
     -v "$(realpath $RELEASE_TAR):/src.tar.gz:ro" \
     -t "$IMAGE_NAME" /build.sh
