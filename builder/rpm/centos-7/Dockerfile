@@ -12,18 +12,21 @@
 #
 FROM centos:7
 
+RUN yum update -y
 RUN yum install -y \
     make \
     rpm-build \
     yum-utils \
     apr-devel \
     cyrus-sasl-devel \
+    flex \
     gcc \
     gcc-c++ \
     git \
     java-1.8.0-openjdk-devel \
     krb5-devel \
     libcurl-devel \
+    openssl \
     patch \
     python \
     python-devel \
@@ -31,6 +34,7 @@ RUN yum install -y \
     tar \
     unzip \
     wget \
+    which \
     zlib-devel
 
 ADD build.sh /build.sh

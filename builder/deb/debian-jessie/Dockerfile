@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM ubuntu:trusty
+FROM debian:jessie-backports
 
 WORKDIR /aurora
 ENV HOME /aurora
@@ -25,21 +25,17 @@ RUN apt-get update && apt-get -y install \
   git \
   libapr1-dev \
   libcurl4-openssl-dev \
+  libkrb5-dev \
   libsvn-dev \
   python-all-dev \
-  software-properties-common
+  software-properties-common \
+  thrift-compiler
 
-RUN add-apt-repository ppa:openjdk-r/ppa -y \
-  && apt-get update \
-  && apt-get install -y openjdk-8-jdk \
-  && update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+RUN apt-get -y -t jessie-backports install openjdk-8-jdk \
+   && update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
-RUN curl -sSL http://apache.org/dist/thrift/KEYS | gpg --import - && \
-   gpg --export --armor 66B778F9 | sudo apt-key add - && \
-   echo 'deb http://www.apache.org/dist/thrift/debian 0.9.1 main' > /etc/apt/sources.list.d/thrift.list && \
-   apt-get update && \
-   apt-get install thrift-compiler=0.9.1
-
+# TODO (shirchen): explore possiblity of downloading gradle directly from gradle. Issue is that
+# there's already a build-time dep of a package name 'gradle'.
 # Install gradle.
 RUN git clone --depth 1 https://github.com/benley/gradle-packaging \
   && cd gradle-packaging \

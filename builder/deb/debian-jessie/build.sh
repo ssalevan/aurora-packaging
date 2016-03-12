@@ -1,5 +1,4 @@
 #!/bin/bash
-# Configuration used when executing the Thermos observer process.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +11,30 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
+#TODO (wfarner): Figure out how to symlink build files into Docker container.
 
-OBSERVER_ARGS=(
-  --port=1338
-  --log_to_disk=NONE
-  --log_to_stderr=google:INFO
-)
+set -ex
+
+mkdir /scratch
+cd /scratch
+
+tar --strip-components 1 -C . -xf /src.tar.gz
+
+cp -R /specs/debian .
+
+export DEBFULLNAME='Apache Aurora'
+export DEBEMAIL='dev@aurora.apache.org'
+
+dch \
+  --newversion $AURORA_VERSION \
+  --package apache-aurora \
+  --urgency medium \
+  "Apache Aurora package builder <dev@aurora.apache.org> $(date -R)"
+dch --release ''
+
+dpkg-buildpackage -uc -b -tc
+
+mkdir /dist
+mv ../*.deb /dist
