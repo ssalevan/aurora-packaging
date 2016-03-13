@@ -186,7 +186,7 @@ mv dist/kaurora.pex dist/aurora.pex
 mv dist/kaurora_admin.pex dist/aurora_admin.pex
 
 # Builds Aurora Thermos and GC executor PEX binaries.
-./pants binary src/main/python/apache/aurora/executor/bin:thermos_executor
+./pants binary src/main/python/apache/aurora/executor:thermos_executor
 ./pants binary src/main/python/apache/aurora/tools:thermos
 ./pants binary src/main/python/apache/aurora/tools:thermos_observer
 ./pants binary src/main/python/apache/thermos/runner:thermos_runner
