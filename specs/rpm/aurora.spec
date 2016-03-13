@@ -149,7 +149,7 @@ state of all running tasks.
 
 
 %prep
-%setup -n aurora-rel-%{version}
+%setup -n apache-aurora-%{version}
 
 
 %build
