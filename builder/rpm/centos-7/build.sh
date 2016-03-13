@@ -18,7 +18,7 @@ set -ex
 mkdir -p /scratch/src
 cd /scratch
 
-tar --strip-components 1 -C src -xf /src.tar.gz
+tar --strip-components 1 -C src -xf /$AURORA_VERSION.tar.gz
 
 cp -R /specs/rpm .
 cd rpm
