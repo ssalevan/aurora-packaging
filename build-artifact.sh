@@ -50,24 +50,24 @@ run_build() {
 }
 
 case $# in
-  2)
+  4)
     for builder in $(print_available_builders); do
-      run_build $builder $1 $2
+      run_build $builder $1 $2 $3 $4
       echo $builder
     done
     ;;
 
-  3)
+  5)
     run_build "$@"
     ;;
 
   *)
     echo 'usage:'
     echo 'to build all artifacts:'
-    echo "  $0 RELEASE_TAR AURORA_VERSION"
+    echo "  $0 RELEASE_TAR AURORA_VERSION MESOS_VERSION"
     echo
     echo 'or to build a specific artifact:'
-    echo "  $0 BUILDER RELEASE_TAR AURORA_VERSION"
+    echo "  $0 BUILDER RELEASE_TAR AURORA_VERSION MESOS_VERSION"
     echo
     echo 'Where BUILDER is a builder directory in:'
     print_available_builders
