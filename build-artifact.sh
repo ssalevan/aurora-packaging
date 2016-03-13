@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 
-set -eu
+set -eux
 
 print_available_builders() {
   find builder -name Dockerfile | sed "s/\/Dockerfile$//"
