@@ -340,7 +340,7 @@ exit 0
 
 
 %changelog
-* Mon Jun 21 2016 Apache Aurora <dev@aurora.apache.org> 0.13.0-1.el7
+* Tue Jun 21 2016 Apache Aurora <dev@aurora.apache.org> 0.13.0-1.el7
 - Updated to Apache Aurora 0.13.0
 - Renamed the aurora service and all associated configurations to
   aurora-scheduler.
