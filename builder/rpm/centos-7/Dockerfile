@@ -26,6 +26,7 @@ RUN yum install -y \
     java-1.8.0-openjdk-devel \
     krb5-devel \
     libcurl-devel \
+    libffi-devel \
     openssl \
     patch \
     python \
@@ -38,4 +39,3 @@ RUN yum install -y \
     zlib-devel
 
 ADD build.sh /build.sh
-ADD pants.ini /pants.ini

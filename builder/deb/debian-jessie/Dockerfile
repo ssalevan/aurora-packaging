@@ -10,11 +10,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM debian:jessie-backports
+FROM debian:jessie
 
 WORKDIR /aurora
 ENV HOME /aurora
 ENV DEBIAN_FRONTEND noninteractive
+
+# The default httpredir mirror is a common source for flaky docker builds.
+# Use an explicit mirror instead (https://github.com/docker-library/buildpack-deps/issues/40)
+RUN echo \
+   'deb http://mirrors.kernel.org/debian/ jessie main\n \
+    deb http://mirrors.kernel.org/debian/ jessie-updates main\n \
+    deb http://mirrors.kernel.org/debian/ jessie-backports main\n \
+    deb http://security.debian.org jessie/updates main\n' \
+    > /etc/apt/sources.list
 
 RUN apt-get update && apt-get -y install \
   bison \
@@ -25,6 +34,7 @@ RUN apt-get update && apt-get -y install \
   git \
   libapr1-dev \
   libcurl4-openssl-dev \
+  libffi-dev \
   libkrb5-dev \
   libsvn-dev \
   python-all-dev \
@@ -39,10 +49,10 @@ RUN apt-get -y -t jessie-backports install openjdk-8-jdk \
 # Install gradle.
 RUN git clone --depth 1 https://github.com/benley/gradle-packaging \
   && cd gradle-packaging \
-  && apt-get install -y ruby ruby-dev unzip wget \
-  && gem install fpm && ./gradle-mkdeb.sh 2.10 \
-  && dpkg -i gradle-2.10_2.10-2_all.deb \
+  && apt-get -y install ruby ruby-dev unzip wget \
+  && gem install fpm && ./gradle-mkdeb.sh 3.1 \
+  && apt-get -y install gdebi-core \
+  && gdebi --non-interactive gradle-3.1_3.1-2_all.deb \
   && cd .. && rm -rf gradle-packaging
 
 ADD build.sh /build.sh
-ADD pants.ini /pants.ini
