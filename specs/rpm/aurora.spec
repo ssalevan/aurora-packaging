@@ -17,6 +17,10 @@
 %global AURORA_VERSION 0.15.0
 %endif
 
+%if %{?!AURORA_EPOCH:1}0
+%global AURORA_EPOCH 1
+%endif
+
 %if %{?!AURORA_INTERNAL_VERSION:1}0
 %global AURORA_INTERNAL_VERSION %{AURORA_VERSION}
 %endif
@@ -56,7 +60,7 @@
 
 Name:          aurora-scheduler
 Version:       %{AURORA_VERSION}
-Release:       1%{?dist}.aurora
+Release:       %{AURORA_EPOCH}%{?dist}.aurora
 Summary:       A Mesos framework for scheduling and executing long-running services and cron jobs.
 Group:         Applications/System
 License:       ASL 2.0
