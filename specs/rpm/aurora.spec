@@ -14,7 +14,7 @@
 
 # Overridable variables;
 %if %{?!AURORA_VERSION:1}0
-%global AURORA_VERSION 0.15.0
+%global AURORA_VERSION 0.19.0
 %endif
 
 %if %{?!AURORA_EPOCH:1}0
@@ -38,7 +38,7 @@
 %endif
 
 %if %{?!GRADLE_VERSION:1}0
-%global GRADLE_VERSION 3.1
+%global GRADLE_VERSION 4.2
 %endif
 
 %if %{?!JAVA_VERSION:!}0
@@ -46,7 +46,7 @@
 %endif
 
 %if %{?!MESOS_VERSION:1}0
-%global MESOS_VERSION 1.0.0
+%global MESOS_VERSION 1.4.0
 %endif
 
 %if %{?!PEX_BINARIES:1}0

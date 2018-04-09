@@ -10,7 +10,7 @@ for installing released packages or release candidate packages.
 
 Run this from the toplevel repository:
 
-    ./test/test-artifact.sh test/deb/debian-jessie /repo/artifacts/aurora-debian-jessie/dist
+    ./test/test-artifact.sh test/deb/ubuntu-xenial /repo/artifacts/aurora-ubuntu-xenial/dist
 
 
 ### Released
@@ -18,20 +18,21 @@ Run this from the toplevel repository:
 Run this from the toplevel repository:
 
     version=0.17.0
-    pkg_root="https://apache.bintray.com/aurora/debian-jessie/"
+    pkg_root="https://apache.bintray.com/aurora/ubuntu-xenial/"
 
     for deb in \
         aurora-scheduler_${version}_amd64.deb \
         aurora-executor_${version}_amd64.deb \
         aurora-tools_${version}_amd64.deb; do
 
-      wget $pkg_root/$deb -P artifacts/aurora-debian-jessie/${version}
+      wget $pkg_root/$deb -P artifacts/aurora-ubuntu-xenial/${version}
     done
 
-    ./test/test-artifact.sh test/deb/debian-jessie /repo/artifacts/aurora-debian-jessie/${version}
+    ./test/test-artifact.sh test/deb/ubuntu-xenial /repo/artifacts/aurora-ubuntu-xenial/${version}
+
 
 ## Troubleshooting
 
 * Mesos: `/var/log/mesos`
-* Aurora scheduler: `sudo journalctl -u aurora-scheduler`
+* Aurora scheduler: `cat /var/log/syslog  | grep aurora-scheduler` and `sudo journalctl -u aurora-scheduler`
 * Aurora observer: `sudo journalctl -u thermos`
